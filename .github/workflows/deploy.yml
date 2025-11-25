@@ -1,0 +1,23 @@
+name: Deploy to Aliyun FTP
+
+on:
+  push:
+    branches: main  # 或者你实际用的分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: wh-agi3sgmeuy0f01jo0h9.my3w.com # 改成你的阿里云虚拟主机 FTP 地址
+          username: wh-agi3sgmeuy0f01jo0h9  # 改成 FTP 用户名
+          password: ${{ secrets.FTP_PASSWORD }}  # GitHub Secret 中设置
+          local-dir: ./                          # 要上传的本地目录
+          server-dir: /htdocs/                          # 虚拟主机上的目标目录S
+
