@@ -1,0 +1,49 @@
+═══════════════════════════════════════════════════════
+  Rucheng Technology Website - Build Report
+═══════════════════════════════════════════════════════
+
+Version:     v2025.11.24-b4c8c85
+Environment: staging
+Build Date:  2025-11-24 12:18:40
+Total Size:   30M
+
+Git Info:
+  Branch:    main
+  Commit:    b4c8c85
+
+Directory Sizes:
+  dist/about.html: 12K
+  dist/apple-touch-icon.png: 16K
+  dist/blog.html: 12K
+  dist/blogs: 92K
+  dist/build-report.txt: 0B
+  dist/components: 20K
+  dist/contact.html: 12K
+  dist/css: 104K
+  dist/debug-translation.html: 12K
+  dist/favicon-96x96.png: 8,0K
+  dist/favicon.ico: 16K
+  dist/favicon.svg: 248K
+  dist/force-create-selector.html: 4,0K
+  dist/generate-favicon.html: 8,0K
+  dist/images: 24M
+  dist/index.html: 24K
+  dist/js: 84K
+  dist/locales: 4,4M
+  dist/product: 1,2M
+  dist/product.html: 56K
+  dist/robots.txt: 4,0K
+  dist/scripts: 16K
+  dist/service.html: 20K
+  dist/site.webmanifest: 4,0K
+  dist/test-favicon.html: 8,0K
+  dist/test-translation.html: 8,0K
+  dist/version.json: 4,0K
+
+File Counts:
+  HTML files:  44
+  CSS files:   8
+  JS files:    9
+  JSON files:  303
+
+Build completed successfully at Mon Nov 24 12:18:45 CST 2025

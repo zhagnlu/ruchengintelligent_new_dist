@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Rucheng</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Blog Hero Section */
+    .blog-hero {
+      background: linear-gradient(135deg, #2E4A78);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .blog-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .blog-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .blog-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Blog Content */
+    .blog-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card-content {
+      padding: 25px;
+    }
+
+    .blog-card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .blog-card-description {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .blog-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .blog-card-date {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .blog-read-more {
+      color: #28a745;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .blog-read-more:hover {
+      color: #218838;
+    }
+
+    /* Blog Header */
+    .blog-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .blog-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .blog-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Pagination */
+    .blog-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+      gap: 10px;
+    }
+
+    .pagination-btn {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      background: white;
+      color: #666;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-btn:hover,
+    .pagination-btn.active {
+      background: #0074c2;
+      color: white;
+      border-color: #0074c2;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .blog-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .blog-hero p {
+        font-size: 1.1rem;
+      }
+
+      .blog-title {
+        font-size: 2rem;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .blog-container {
+        padding: 40px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .blog-hero {
+        padding: 40px 0;
+      }
+
+      .blog-hero h1 {
+        font-size: 2rem;
+      }
+
+      .blog-card-content {
+        padding: 20px;
+      }
+
+      .blog-card-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Blog Hero Section -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <h1 data-translate>Latest News & Insights</h1>
+      <p data-translate>Stay updated with the latest industry trends, technical insights, and company news from Rucheng Technology.</p>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <main class="blog-container">
+    <div class="blog-header">
+      <h2 class="blog-title" data-translate>Our Blog</h2>
+      <p class="blog-subtitle" data-translate>Discover valuable insights about industrial machinery, maintenance tips, and industry best practices.</p>
+    </div>
+
+    <div class="blog-grid">
+      <!-- Blog Card 1 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>How about Rucheng Technology?</h3>
+          <p class="blog-card-description" data-translate>Details determine quality</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>February 11, 2022</span>
+            <a href="blogs/about-rucheng-technology.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Card 2 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>How to maintain the laser cutting machine?</h3>
+          <p class="blog-card-description" data-translate>Maintenance of laser cutting machine</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>February 23, 2022</span>
+            <a href="blogs/laser-cutting-machine-maintenance.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Card 3 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>Laser cutting machine has high efficiency and low cost, saving labor costs</h3>
+          <p class="blog-card-description" data-translate>Discover how modern laser cutting technology can significantly reduce your operational costs while improving efficiency.</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>March 14, 2022</span>
+            <a href="blogs/laser-cutting-efficiency-cost.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Card 4 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>CNC bending machine compensation mode to choose mechanical compensation or hydraulic compensation?</h3>
+          <p class="blog-card-description" data-translate>A comprehensive guide to choosing the right compensation system for your CNC bending operations.</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>March 14, 2022</span>
+            <a href="blogs/cnc-bending-compensation.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Card 5 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>How does the bending machine work?</h3>
+          <p class="blog-card-description" data-translate>Introduction of bending machine</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>February 24, 2022</span>
+            <a href="blogs/how-bending-machine-works.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Card 6 -->
+      <article class="blog-card">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title" data-translate>Maintenance and maintenance of shears</h3>
+          <p class="blog-card-description" data-translate>Essential maintenance tips and best practices for keeping your shearing equipment in optimal condition.</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-date" data-translate>March 14, 2022</span>
+            <a href="blogs/shears-maintenance.html" class="blog-read-more" data-translate>READ MORE »</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Pagination -->
+    <div class="blog-pagination">
+      <a href="#" class="pagination-btn active">1</a>
+      <a href="#" class="pagination-btn">2</a>
+      <a href="#" class="pagination-btn">3</a>
+      <a href="#" class="pagination-btn" data-translate>Next »</a>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/translator.min.js"></script>
+  <script src="js/components.min.js"></script>
+</body>
+</html> 

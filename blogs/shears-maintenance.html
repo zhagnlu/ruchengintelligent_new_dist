@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance and Maintenance of Shears - Rucheng Technology Blog</title>
+  <link rel="stylesheet" href="../css/base.min.css">
+  <link rel="stylesheet" href="../css/header.min.css">
+  <link rel="stylesheet" href="../css/footer.min.css">
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Blog Detail Container */
+    .blog-detail-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Article Header */
+    .article-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .article-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .article-separator {
+      width: 60px;
+      height: 3px;
+      background: #0074c2;
+      margin: 0 auto 25px;
+      border-radius: 2px;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+
+    /* Article Content */
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .content-paragraph {
+      margin-bottom: 20px;
+    }
+
+    .content-link {
+      color: #0074c2;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .content-link:hover {
+      color: #0056b3;
+    }
+
+    .content-bold {
+      font-weight: 600;
+    }
+
+    /* Bullet List */
+    .content-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .content-list li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .content-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #0074c2;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Article Footer */
+    .article-footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+    }
+
+    .article-footer-meta {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+
+    /* Navigation */
+    .article-navigation {
+      margin-top: 40px;
+    }
+
+    .next-post {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .next-post:hover {
+      background: #e9ecef;
+      transform: translateY(-2px);
+    }
+
+    .next-post-label {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .next-post-title {
+      color: #0074c2;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .next-post-arrow {
+      color: #0074c2;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Back to Blog */
+    .back-to-blog {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #0074c2;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 24px;
+      border: 2px solid #0074c2;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: #0074c2;
+      color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .blog-detail-container {
+        padding: 30px 15px;
+      }
+
+      .article-title {
+        font-size: 2rem;
+      }
+
+      .article-meta {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .article-footer-meta {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      .next-post {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .article-title {
+        font-size: 1.8rem;
+      }
+
+      .article-content {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Blog Detail Content -->
+  <main class="blog-detail-container">
+    <!-- Article Header -->
+    <header class="article-header">
+      <h1 class="article-title" data-translate>Maintenance and Maintenance of Shears</h1>
+      <div class="article-separator"></div>
+      <div class="article-meta">
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <span data-translate>Admin</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <span data-translate>March 14, 2022</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21.99 4c0-1.1-.89-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+          </svg>
+          <span data-translate>Leave a Comment</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+      <div class="content-section">
+        <p class="content-paragraph" data-translate>
+          Proper maintenance of <a href="../product.html#shearing-machines" class="content-link">shearing machines</a> is essential for ensuring optimal performance, extending equipment lifespan, and maintaining workplace safety. Whether you operate hydraulic guillotine shears, swing beam shears, or CNC shearing machines, following a comprehensive maintenance program will minimize downtime and maximize productivity.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Why Regular Maintenance Matters</h2>
+        <p class="content-paragraph" data-translate>
+          Shearing machines operate under high loads and precision requirements. Without proper maintenance, several issues can arise:
+        </p>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Blade Wear:</span> Dull or damaged blades produce poor cut quality and require excessive force.</li>
+          <li data-translate><span class="content-bold">Hydraulic Problems:</span> Contaminated oil or worn seals lead to pressure loss and erratic operation.</li>
+          <li data-translate><span class="content-bold">Accuracy Loss:</span> Worn components affect cutting precision and perpendicularity.</li>
+          <li data-translate><span class="content-bold">Safety Risks:</span> Neglected maintenance can compromise safety systems and create hazards.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Daily Maintenance Tasks</h2>
+        <p class="content-paragraph" data-translate>
+          Operators should perform these checks at the beginning of each shift:
+        </p>
+        <ul class="content-list">
+          <li data-translate>Visually inspect the machine for obvious damage, leaks, or loose components</li>
+          <li data-translate>Check hydraulic oil level in the reservoir</li>
+          <li data-translate>Verify that all safety guards and devices are functioning properly</li>
+          <li data-translate>Test emergency stop buttons</li>
+          <li data-translate>Check blade condition for visible chips, cracks, or excessive wear</li>
+          <li data-translate>Clean the cutting table of debris and metal chips</li>
+          <li data-translate>Lubricate guide rails and moving parts as specified</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Weekly Maintenance</h2>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Hydraulic System:</span> Check oil level, condition, and temperature. Look for contamination or unusual color.</li>
+          <li data-translate><span class="content-bold">Filters:</span> Inspect hydraulic and air filters for clogging. Replace if necessary.</li>
+          <li data-translate><span class="content-bold">Lubrication:</span> Grease all lubrication points according to the lubrication chart.</li>
+          <li data-translate><span class="content-bold">Blade Clearance:</span> Verify and adjust blade gap if needed for optimal cutting.</li>
+          <li data-translate><span class="content-bold">Back Gauge:</span> Check accuracy and adjust if positioning errors are detected.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Monthly Maintenance</h2>
+        <p class="content-paragraph" data-translate>
+          <span class="content-bold">Blade Inspection:</span> Remove and inspect blades for wear, chips, or cracks. Measure blade edge condition and remaining usable length. Rotate or flip blades to use fresh cutting edges when available.
+        </p>
+        <p class="content-paragraph" data-translate>
+          <span class="content-bold">Hydraulic System Service:</span> Test hydraulic oil for contamination and viscosity. Check all hydraulic hoses for cracks, bulges, or leaks. Inspect cylinder rods for scoring or wear.
+        </p>
+        <p class="content-paragraph" data-translate>
+          <span class="content-bold">Mechanical Components:</span> Check wear on guide rails and adjust clearances as needed. Verify squareness of back gauge to blade. Inspect all limit switches and sensors.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Blade Maintenance Best Practices</h2>
+        <p class="content-paragraph" data-translate>
+          Blades are the most critical wear components on shearing machines:
+        </p>
+        <ul class="content-list">
+          <li data-translate>Maintain proper blade clearance for optimal cut quality</li>
+          <li data-translate>Rotate blades regularly - most blades have four usable edges</li>
+          <li data-translate>Have blades reground by specialists using proper angles and cooling</li>
+          <li data-translate>Never exceed rated thickness capacity</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Hydraulic Oil Management</h2>
+        <p class="content-paragraph" data-translate>
+          Hydraulic system health is critical for shearing machine performance:
+        </p>
+        <ul class="content-list">
+          <li data-translate>Use only manufacturer-recommended hydraulic oil grades</li>
+          <li data-translate>Maintain proper oil temperature during operation</li>
+          <li data-translate>Keep oil clean - contamination is the leading cause of hydraulic failures</li>
+          <li data-translate>Monitor oil condition regularly</li>
+          <li data-translate>Prevent water contamination</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Safety Considerations</h2>
+        <p class="content-paragraph" data-translate>
+          Always prioritize safety during maintenance:
+        </p>
+        <ul class="content-list">
+          <li data-translate>Lock out and tag out electrical power before servicing</li>
+          <li data-translate>Relieve hydraulic pressure before disconnecting lines</li>
+          <li data-translate>Use proper lifting equipment when handling heavy blades</li>
+          <li data-translate>Wear appropriate PPE including safety glasses and gloves</li>
+          <li data-translate>Never bypass safety guards or interlocks</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Conclusion</h2>
+        <p class="content-paragraph" data-translate>
+          A well-maintained shearing machine delivers consistent performance, superior cut quality, and long service life. At <span class="content-bold">Rucheng Technology</span>, we provide detailed maintenance documentation with all our <a href="../product.html#shearing-machines" class="content-link">shearing machines</a>, along with training and support to help you maximize your equipment investment.
+        </p>
+      </div>
+    </article>
+
+    <!-- Article Footer -->
+    <footer class="article-footer">
+      <div class="article-footer-meta">
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <span data-translate>Admin</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <span data-translate>March 14, 2022</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+          </svg>
+          <span data-translate>Maintenance</span>
+        </div>
+      </div>
+
+      <!-- Next Post Navigation -->
+      <div class="article-navigation">
+        <a href="../blog.html" class="next-post">
+          <div>
+            <div class="next-post-label" data-translate>View All Posts—</div>
+            <div class="next-post-title" data-translate>Back to Blog</div>
+          </div>
+          <div class="next-post-arrow">→</div>
+        </a>
+      </div>
+    </footer>
+
+    <!-- Comments Section -->
+    <div id="commentsContainer"></div>
+
+    <!-- Back to Blog -->
+    <div class="back-to-blog">
+      <a href="../blog.html" class="back-link" data-translate>← Back to Blog</a>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/translator.min.js"></script>
+  <script src="../js/components.min.js"></script>
+  <script src="../js/comments.min.js"></script>
+  <script>
+    // Initialize Comments System
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize translator after components are loaded
+      setTimeout(() => {
+        const translator = new Translator({
+          defaultLang: 'en',
+          batchSize: 3,
+          delay: 100,
+          elements: '[data-translate]'
+        });
+      }, 500);
+
+      // Initialize comments system
+      const commentsSystem = new CommentsSystem('commentsContainer', {
+        storageKey: 'blog_comments',
+        articleId: 'shears_maintenance',
+        maxComments: 100
+      });
+
+      // Add click handler for "Leave a Comment" link in meta
+      const leaveCommentLink = document.querySelector('.meta-item:last-child');
+      if (leaveCommentLink) {
+        leaveCommentLink.style.cursor = 'pointer';
+        leaveCommentLink.addEventListener('click', function() {
+          commentsSystem.scrollToComments();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

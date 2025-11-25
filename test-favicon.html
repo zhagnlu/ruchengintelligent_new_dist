@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon 测试页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #0074c2;
+      border-bottom: 3px solid #0074c2;
+      padding-bottom: 10px;
+    }
+    .status {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .status.warning {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    button {
+      background: #0074c2;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-box">
+    <h1>🧪 Favicon 自动加载测试</h1>
+    <p>此页面测试 favicon 是否通过 <code>components.js</code> 正确加载到 <code>&lt;head&gt;</code> 中。</p>
+    
+    <button onclick="runTests()">🔍 运行测试</button>
+    <button onclick="showHeadContent()">📋 查看 &lt;head&gt; 内容</button>
+    <button onclick="location.reload()">🔄 刷新页面</button>
+    
+    <div id="results"></div>
+  </div>
+
+  <div class="test-box" id="details" style="display: none;">
+    <h2>📄 &lt;head&gt; 标签详情</h2>
+    <pre id="head-content"></pre>
+  </div>
+
+  <script src="js/components.min.js"></script>
+  <script>
+    // 初始化组件加载器
+    const loader = new ComponentLoader();
+    loader.loadAll();
+
+    function runTests() {
+      const results = document.getElementById('results');
+      results.innerHTML = '<h2>测试结果：</h2>';
+
+      const tests = [
+        {
+          name: 'favicon.ico',
+          check: () => document.querySelector('link[href="/favicon.ico"]')
+        },
+        {
+          name: 'favicon.svg',
+          check: () => document.querySelector('link[href="/favicon.svg"]')
+        },
+        {
+          name: 'apple-touch-icon',
+          check: () => document.querySelector('link[href="/apple-touch-icon.png"]')
+        },
+        {
+          name: 'favicon-96x96',
+          check: () => document.querySelector('link[href="/favicon-96x96.png"]')
+        },
+        {
+          name: 'theme-color',
+          check: () => document.querySelector('meta[name="theme-color"]')
+        },
+        {
+          name: 'manifest',
+          check: () => document.querySelector('link[rel="manifest"]')
+        },
+        {
+          name: 'apple-mobile-web-app-title',
+          check: () => document.querySelector('meta[name="apple-mobile-web-app-title"]')
+        }
+      ];
+
+      tests.forEach(test => {
+        const element = test.check();
+        const status = element ? 'success' : 'error';
+        const message = element ? '✅ 已加载' : '❌ 未找到';
+        
+        results.innerHTML += `
+          <div class="status ${status}">
+            <strong>${test.name}:</strong> ${message}
+            ${element ? `<br><code>${element.outerHTML}</code>` : ''}
+          </div>
+        `;
+      });
+
+      // 检查文件是否存在
+      checkFileExists();
+    }
+
+    function checkFileExists() {
+      const results = document.getElementById('results');
+      results.innerHTML += '<h2>文件存在性检查：</h2>';
+
+      const files = [
+        '/favicon.svg',
+        '/favicon.ico',
+        '/apple-touch-icon.png',
+        '/favicon-96x96.png',
+        '/site.webmanifest',
+        '/components/head-includes.html'
+      ];
+
+      files.forEach(file => {
+        fetch(file, { method: 'HEAD' })
+          .then(response => {
+            const status = response.ok ? 'success' : 'error';
+            const message = response.ok ? '✅ 文件存在' : '❌ 文件不存在 (404)';
+            results.innerHTML += `
+              <div class="status ${status}">
+                <strong>${file}:</strong> ${message}
+              </div>
+            `;
+          })
+          .catch(() => {
+            results.innerHTML += `
+              <div class="status error">
+                <strong>${file}:</strong> ❌ 请求失败
+              </div>
+            `;
+          });
+      });
+    }
+
+    function showHeadContent() {
+      const details = document.getElementById('details');
+      const content = document.getElementById('head-content');
+      
+      const allTags = Array.from(document.head.children)
+        .filter(el => 
+          el.tagName === 'LINK' || 
+          (el.tagName === 'META' && (el.name || el.property))
+        )
+        .map(el => el.outerHTML)
+        .join('\n');
+      
+      content.textContent = allTags;
+      details.style.display = 'block';
+    }
+
+    // 页面加载后自动运行测试
+    window.addEventListener('load', () => {
+      setTimeout(runTests, 1000); // 等待 components 加载完成
+    });
+  </script>
+</body>
+</html>

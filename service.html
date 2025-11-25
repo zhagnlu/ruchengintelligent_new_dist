@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - Rucheng</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .service-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('images/service/service.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.2;
+    }
+
+    .service-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .service-hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .service-hero-btn {
+      display: inline-block;
+      background: white;
+      color: #0074c2;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .service-hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Services Overview */
+    .services-overview {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #0074c2, #0056b3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .service-features li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #0074c2;
+      font-weight: bold;
+    }
+
+    /* Process Section */
+    .process-section {
+      padding: 80px 0;
+      background: #f8f9fa;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-number {
+      width: 60px;
+      height: 60px;
+      background: #0074c2;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 20px;
+    }
+
+    .process-step h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .process-step p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Technology Section */
+    .technology-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .tech-item {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid #0074c2;
+    }
+
+    .tech-item h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .tech-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #2E4A78 0%, #2E4A78 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-content h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cta-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn-primary {
+      background: white;
+      color: #0074c2;
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .service-hero {
+        background-attachment: scroll;
+      }
+      
+      .service-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .service-hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-btn {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-hero {
+        padding: 60px 0;
+      }
+
+      .service-hero h1 {
+        font-size: 2rem;
+      }
+
+      .services-overview,
+      .process-section,
+      .technology-section,
+      .cta-section {
+        padding: 60px 0;
+      }
+
+      .service-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Hero Section -->
+  <section class="service-hero">
+    <div class="service-hero-content">
+      <h1 data-translate>Professional Industrial Solutions</h1>
+      <p data-translate>We provide comprehensive manufacturing equipment and technical services to help your business achieve excellence in production efficiency and quality control.</p>
+      <a href="#services" class="service-hero-btn" data-translate>Explore Our Services</a>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="services-overview" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-translate>Our Core Services</h2>
+        <p class="section-subtitle" data-translate>Comprehensive solutions for modern manufacturing needs</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏭</div>
+          <h3 data-translate>Equipment Manufacturing</h3>
+          <p data-translate>High-quality industrial machinery including press brakes, laser cutters, and specialized manufacturing equipment.</p>
+          <ul class="service-features">
+            <li data-translate>Custom design and engineering</li>
+            <li data-translate>Precision manufacturing</li>
+            <li data-translate>Quality assurance testing</li>
+            <li data-translate>Technical documentation</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3 data-translate>Technical Support</h3>
+          <p data-translate>Comprehensive technical support and maintenance services to ensure optimal equipment performance.</p>
+          <ul class="service-features">
+            <li data-translate>24/7 technical assistance</li>
+            <li data-translate>Preventive maintenance</li>
+            <li data-translate>Repair and replacement</li>
+            <li data-translate>Training and certification</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3 data-translate>Consulting Services</h3>
+          <p data-translate>Expert consulting to optimize your manufacturing processes and improve operational efficiency.</p>
+          <ul class="service-features">
+            <li data-translate>Process optimization</li>
+            <li data-translate>Equipment selection</li>
+            <li data-translate>Workflow analysis</li>
+            <li data-translate>Performance improvement</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚀</div>
+          <h3 data-translate>Custom Solutions</h3>
+          <p data-translate>Tailored solutions designed to meet your specific manufacturing requirements and challenges.</p>
+          <ul class="service-features">
+            <li data-translate>Custom equipment design</li>
+            <li data-translate>Integration services</li>
+            <li data-translate>Specialized modifications</li>
+            <li data-translate>Turnkey solutions</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📚</div>
+          <h3 data-translate>Training Programs</h3>
+          <p data-translate>Comprehensive training programs to ensure your team can operate equipment safely and efficiently.</p>
+          <ul class="service-features">
+            <li data-translate>Operator training</li>
+            <li data-translate>Safety protocols</li>
+            <li data-translate>Maintenance procedures</li>
+            <li data-translate>Certification programs</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3 data-translate>Global Support</h3>
+          <p data-translate>Worldwide support network ensuring you receive assistance wherever your operations are located.</p>
+          <ul class="service-features">
+            <li data-translate>International service</li>
+            <li data-translate>Local partnerships</li>
+            <li data-translate>Remote diagnostics</li>
+            <li data-translate>Spare parts supply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-translate>Our Service Process</h2>
+        <p class="section-subtitle" data-translate>A systematic approach to delivering excellence</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-number">1</div>
+          <h3 data-translate>Consultation</h3>
+          <p data-translate>We begin with a thorough consultation to understand your specific needs, challenges, and objectives.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">2</div>
+          <h3 data-translate>Analysis</h3>
+          <p data-translate>Our experts analyze your current processes and identify opportunities for improvement and optimization.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">3</div>
+          <h3 data-translate>Solution Design</h3>
+          <p data-translate>We design customized solutions that address your specific requirements and deliver measurable results.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">4</div>
+          <h3 data-translate>Implementation</h3>
+          <p data-translate>Our team ensures smooth implementation with minimal disruption to your operations.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">5</div>
+          <h3 data-translate>Support</h3>
+          <p data-translate>Ongoing support and maintenance to ensure optimal performance and long-term success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section class="technology-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-translate>Technology & Innovation</h2>
+        <p class="section-subtitle" data-translate>Cutting-edge technology driving manufacturing excellence</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <h3 data-translate>Advanced Automation</h3>
+          <p data-translate>State-of-the-art automation systems that improve efficiency, reduce errors, and increase productivity.</p>
+        </div>
+
+        <div class="tech-item">
+          <h3 data-translate>Precision Engineering</h3>
+          <p data-translate>High-precision manufacturing processes ensuring consistent quality and reliable performance.</p>
+        </div>
+
+        <div class="tech-item">
+          <h3 data-translate>Smart Monitoring</h3>
+          <p data-translate>Intelligent monitoring systems providing real-time data and predictive maintenance capabilities.</p>
+        </div>
+
+        <div class="tech-item">
+          <h3 data-translate>Energy Efficiency</h3>
+          <p data-translate>Energy-efficient solutions that reduce operational costs while maintaining high performance standards.</p>
+        </div>
+
+        <div class="tech-item">
+          <h3 data-translate>Quality Control</h3>
+          <p data-translate>Comprehensive quality control systems ensuring every product meets the highest standards.</p>
+        </div>
+
+        <div class="tech-item">
+          <h3 data-translate>Digital Integration</h3>
+          <p data-translate>Seamless integration with existing systems and Industry 4.0 technologies for enhanced connectivity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 data-translate>Ready to Transform Your Manufacturing?</h2>
+        <p data-translate>Let's discuss how our services can help you achieve your production goals and improve your operational efficiency.</p>
+        <div class="cta-buttons">
+          <a href="/contact.html" class="cta-btn cta-btn-primary" data-translate>Get Started Today</a>
+          <a href="product.html" class="cta-btn cta-btn-secondary" data-translate>View Our Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/translator.min.js"></script>
+  <script src="js/components.min.js"></script>
+</body>
+</html> 

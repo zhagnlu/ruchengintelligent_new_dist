@@ -1,0 +1,42 @@
+# robots.txt for Rucheng Technology
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow translation debug and test tools (not for public indexing)
+Disallow: /debug-translation.html
+Disallow: /test-translation.html
+Disallow: /translation-demo.html
+Disallow: /test-favicon.html
+Disallow: /generate-favicon.html
+Disallow: /force-create-selector.html
+
+# Disallow scripts, styles, and locales directories
+Disallow: /scripts/
+Disallow: /js/
+Disallow: /css/
+Disallow: /locales/
+
+# Allow important pages (main pages)
+Allow: /index.html
+Allow: /about.html
+Allow: /product.html
+Allow: /service.html
+Allow: /blog.html
+Allow: /contact.html
+
+# Allow all blog detail pages
+Allow: /blogs/
+
+# Allow all product pages
+Allow: /product/
+
+# Product pages use anchors (#press-brake, etc.) on product.html
+# No separate product detail pages to allow
+
+# Sitemap location
+Sitemap: https://www.ruchengintelligent.com/sitemap.xml
+
+# Crawl delay (optional, 1 second between requests)
+Crawl-delay: 1

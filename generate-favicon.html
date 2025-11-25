@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Generator - Rucheng Technology</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0074c2;
+      border-bottom: 3px solid #0074c2;
+      padding-bottom: 10px;
+    }
+    .preview {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .favicon-preview {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .size-box {
+      text-align: center;
+    }
+    .size-box img {
+      border: 1px solid #ddd;
+      padding: 5px;
+      background: white;
+    }
+    .instructions {
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 20px 0;
+      border-left: 4px solid #0074c2;
+    }
+    .instructions h3 {
+      margin-top: 0;
+      color: #0074c2;
+    }
+    .instructions ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin: 10px 0;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    .download-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: #fff3cd;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+    a.btn {
+      display: inline-block;
+      background: #0074c2;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 10px 10px 10px 0;
+      font-weight: bold;
+    }
+    a.btn:hover {
+      background: #005a9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Favicon 生成器 - 如程科技</h1>
+
+    <div class="preview">
+      <h2>预览</h2>
+      <div class="favicon-preview">
+        <div class="size-box">
+          <p><strong>16x16</strong></p>
+          <img src="favicon.svg" width="16" height="16" alt="16x16 favicon">
+        </div>
+        <div class="size-box">
+          <p><strong>32x32</strong></p>
+          <img src="favicon.svg" width="32" height="32" alt="32x32 favicon">
+        </div>
+        <div class="size-box">
+          <p><strong>48x48</strong></p>
+          <img src="favicon.svg" width="48" height="48" alt="48x48 favicon">
+        </div>
+        <div class="size-box">
+          <p><strong>64x64</strong></p>
+          <img src="favicon.svg" width="64" height="64" alt="64x64 favicon">
+        </div>
+      </div>
+      <p style="color: #666;">当前使用的是 SVG 格式的临时 favicon（蓝色背景 + 白色 "R" 字母）</p>
+    </div>
+
+    <div class="download-section">
+      <h3>📥 推荐的在线工具</h3>
+      <p>使用以下在线工具将您的 logo 转换为 favicon.ico：</p>
+      <a href="https://www.favicon-generator.org/" target="_blank" class="btn">Favicon Generator</a>
+      <a href="https://realfavicongenerator.net/" target="_blank" class="btn">RealFaviconGenerator</a>
+      <a href="https://favicon.io/" target="_blank" class="btn">Favicon.io</a>
+    </div>
+
+    <div class="instructions">
+      <h3>📋 方法一：使用现有的公司 Logo</h3>
+      <ol>
+        <li>准备公司 logo 图片（推荐尺寸：512x512 或更大，正方形）</li>
+        <li>访问上面的任一在线工具</li>
+        <li>上传您的 logo 图片</li>
+        <li>下载生成的 <code>favicon.ico</code> 文件</li>
+        <li>将 <code>favicon.ico</code> 放到网站根目录</li>
+      </ol>
+    </div>
+
+    <div class="instructions">
+      <h3>🎨 方法二：使用临时 SVG Favicon</h3>
+      <p>已创建 <code>favicon.svg</code> 文件，可以临时使用。要在网站中使用，请在所有 HTML 文件的 <code>&lt;head&gt;</code> 部分添加：</p>
+      <pre><code>&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;</code></pre>
+    </div>
+
+    <div class="instructions">
+      <h3>🛠️ 方法三：使用 Photoshop/GIMP</h3>
+      <ol>
+        <li>在 Photoshop 或 GIMP 中创建 512x512 像素的正方形画布</li>
+        <li>设计您的 favicon（简单、清晰、易识别）</li>
+        <li>导出为 PNG 格式</li>
+        <li>使用在线工具转换为 .ico 格式</li>
+        <li>生成多种尺寸：16x16, 32x32, 48x48, 64x64</li>
+      </ol>
+    </div>
+
+    <div class="instructions">
+      <h3>✅ 安装步骤</h3>
+      <ol>
+        <li>将生成的 <code>favicon.ico</code> 放到网站根目录</li>
+        <li>在所有 HTML 文件的 <code>&lt;head&gt;</code> 中添加：
+          <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;</code></pre>
+        </li>
+        <li>清除浏览器缓存并刷新页面</li>
+        <li>检查浏览器标签页是否显示新图标</li>
+      </ol>
+    </div>
+
+    <div class="instructions" style="background: #d4edda; border-left-color: #28a745;">
+      <h3>🎯 设计建议</h3>
+      <ul>
+        <li><strong>简单明了：</strong>Favicon 很小，设计要简单易识别</li>
+        <li><strong>品牌一致：</strong>使用公司品牌色（您的主色是 #0074c2 蓝色）</li>
+        <li><strong>高对比度：</strong>确保在浅色和深色背景下都清晰可见</li>
+        <li><strong>多种尺寸：</strong>提供 16x16, 32x32, 48x48, 180x180（Apple）</li>
+        <li><strong>测试：</strong>在不同浏览器和设备上测试显示效果</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

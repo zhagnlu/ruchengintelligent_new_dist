@@ -1,0 +1,31 @@
+{
+  "name": "Rucheng Technology - Sheet Metal Fabrication Expert",
+  "short_name": "Rucheng",
+  "description": "Professional manufacturer of press brakes, laser cutting machines, shearing machines, and sheet metal fabrication equipment.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0074c2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "manufacturing", "industrial"],
+  "lang": "en",
+  "dir": "ltr"
+}

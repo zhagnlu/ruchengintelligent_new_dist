@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Rucheng</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      background: #f7f8fa;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #222;
+    }
+    .contact-container {
+      max-width: 1200px;
+      margin: 40px auto 60px auto;
+      background: #f7f8fa;
+      border-radius: 16px;
+      display: flex;
+      gap: 48px;
+      padding: 40px 32px 48px 32px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.04);
+    }
+    .contact-left, .contact-right {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .contact-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .contact-title {
+      color: #0074c2;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0px;
+      margin-bottom: 0.5em;
+    }
+    .contact-main-title {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 0.2em;
+      letter-spacing: 0px;
+    }
+    .contact-underline {
+      width: 48px;
+      height: 4px;
+      background: #0074c2;
+      border-radius: 2px;
+      margin-bottom: 1.2em;
+    }
+    .contact-desc {
+      font-size: 17px;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 2em;
+    }
+    .contact-details {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: 15px;
+    }
+    .contact-details-col {
+      min-width: 220px;
+    }
+    .contact-details-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    .contact-detail svg {
+      flex-shrink: 0;
+      color: #0074c2;
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+    }
+    .contact-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: #222;
+      font-size: 15px;
+    }
+    .contact-social svg {
+      width: 18px;
+      height: 18px;
+      color: #0074c2;
+    }
+    .contact-social i {
+      color: #0074c2;
+      font-size: 18px;
+      width: 18px;
+      min-width: 18px;
+      text-align: center;
+    }
+    .contact-right {
+      background: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-form-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 0.5em;
+      letter-spacing: 0px;
+    }
+    .contact-form-underline {
+      width: 40px;
+      height: 4px;
+      background: #0074c2;
+      border-radius: 2px;
+      margin-bottom: 1.5em;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 16px 14px;
+      border: 1.5px solid #e0e4ea;
+      border-radius: 7px;
+      font-size: 16px;
+      background: #fff;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #0074c2;
+    }
+    .contact-form textarea {
+      min-height: 110px;
+      max-height: 220px;
+    }
+    .contact-form button {
+      background: linear-gradient(90deg, #0074c2 0%, #0056b3 100%);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      padding: 16px 0;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(55,125,255,0.08);
+    }
+    .contact-form button:hover {
+      background: linear-gradient(90deg, #0056b3 0%, #0074c2 100%);
+      box-shadow: 0 4px 18px rgba(55,125,255,0.13);
+    }
+    @media (max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 32px;
+        padding: 24px 8px 32px 8px;
+      }
+      .contact-left, .contact-right {
+        width: 100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .contact-main-title, .contact-form-title {
+        font-size: 26px;
+      }
+      .contact-container {
+        padding: 10px 0 24px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <div class="contact-container">
+      <div class="contact-left">
+        <div class="contact-title" data-translate>WE'D LOVE TO HEAR FROM YOU</div>
+        <div class="contact-main-title" data-translate>Contact Us</div>
+        <div class="contact-underline"></div>
+        <div class="contact-desc" data-translate>
+          Our company adheres to the business philosophy of "sincere life, conscientious work, quality first, reputation first, excellent service". If you have any questions, please feel free to get in touch with us in the following ways!
+        </div>
+        <div class="contact-details">
+          <div class="contact-details-col">
+            <div class="contact-details-title" data-translate>OUR CONTACT DETAILS</div>
+            <div class="contact-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+              <span data-translate>Shiqiu Industrial Zone, Lishui District,<br>Nanjing City, Jiangsu Province</span>
+            </div>
+            <div class="contact-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1C7.61 21 3 16.39 3 11a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" fill="currentColor"/></svg>
+              400-886-6884
+            </div>
+          </div>
+          <div class="contact-details-col">
+            <div class="contact-details-title" data-translate>OUR CONTACT DETAILS</div>
+            <a href="https://www.facebook.com/profile.php?id=100078482187510" target="_blank" class="contact-social" style="text-decoration: none; color: inherit;"><i class="fab fa-facebook-f"></i> <span data-translate>Ru Cheng</span></a>
+            <a href="https://twitter.com/Ruchengchina" target="_blank" class="contact-social" style="text-decoration: none; color: inherit;"><i class="fab fa-twitter"></i> Rucheng@Ruchengchina</a>
+            <a href="mailto:info@ruchengintelligent.com" class="contact-social" style="text-decoration: none; color: inherit;"><i class="fab fa-google"></i> info@ruchengintelligent.com</a>
+            <a href="https://tiktok.com/@ruchengintelligent" target="_blank" class="contact-social" style="text-decoration: none; color: inherit;"><i class="fab fa-tiktok"></i> <span data-translate>Rucheng</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form-title" data-translate>Send us a Message</div>
+        <div class="contact-form-underline"></div>
+        <form class="contact-form" autocomplete="off">
+          <input type="text" name="name" placeholder="Your name*" data-translate-placeholder="Your name*" required>
+          <input type="email" name="email" placeholder="Email Address*" data-translate-placeholder="Email Address*" required>
+          <textarea name="message" placeholder="Give us your need as specific as possible*" data-translate-placeholder="Give us your need as specific as possible*" required></textarea>
+          <button type="submit" data-translate>Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="js/translator.min.js"></script>
+  <script src="js/components.min.js"></script>
+  <script src="js/contact-form.min.js"></script>
+  <script>
+     // Translator will be initialized automatically by components.js
+
+     // Initialize contact form handler after DOM is ready
+     document.addEventListener('DOMContentLoaded', function () {
+       setTimeout(() => {
+         // 初始化联系表单处理器
+         // 选择一个提交方法：'email' (推荐), 'api', 'googleforms', 'localStorage' (测试用)
+         const contactForm = new ContactFormHandler({
+           submitMethod: 'email',  // 使用 FormSubmit.co 免费邮件服务
+           // submitMethod: 'localStorage',  // 或使用本地存储（测试用）
+           onSuccess: function(result) {
+             console.log('表单提交成功:', result);
+           },
+           onError: function(error) {
+             console.error('表单提交失败:', error);
+           }
+         });
+       }, 700); // 等待 components.js 完成初始化
+     });
+   </script>
+</body>
+</html> 

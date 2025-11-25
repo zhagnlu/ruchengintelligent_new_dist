@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CNC Bending Machine Compensation: Mechanical vs Hydraulic - Rucheng Technology Blog</title>
+  <link rel="stylesheet" href="../css/base.min.css">
+  <link rel="stylesheet" href="../css/header.min.css">
+  <link rel="stylesheet" href="../css/footer.min.css">
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .blog-detail-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .article-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .article-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .article-separator {
+      width: 60px;
+      height: 3px;
+      background: #0074c2;
+      margin: 0 auto 25px;
+      border-radius: 2px;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .content-paragraph {
+      margin-bottom: 20px;
+    }
+
+    .content-link {
+      color: #0074c2;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .content-link:hover {
+      color: #0056b3;
+    }
+
+    .content-bold {
+      font-weight: 600;
+    }
+
+    .content-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .content-list li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .content-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #0074c2;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .article-footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+    }
+
+    .article-footer-meta {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+
+    .back-to-blog {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #0074c2;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 24px;
+      border: 2px solid #0074c2;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: #0074c2;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .blog-detail-container {
+        padding: 30px 15px;
+      }
+
+      .article-title {
+        font-size: 2rem;
+      }
+
+      .article-meta {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .article-title {
+        font-size: 1.8rem;
+      }
+
+      .article-content {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main class="blog-detail-container">
+    <header class="article-header">
+      <h1 class="article-title" data-translate>CNC Bending Machine Compensation: Mechanical vs Hydraulic</h1>
+      <div class="article-separator"></div>
+      <div class="article-meta">
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <span data-translate>Admin</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <span data-translate>March 14, 2022</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21.99 4c0-1.1-.89-2-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+          </svg>
+          <span data-translate>Leave a Comment</span>
+        </div>
+      </div>
+    </header>
+
+    <article class="article-content">
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Understanding Press Brake Compensation</h2>
+        <p class="content-paragraph" data-translate>
+          When bending long workpieces on a <a href="../product.html#press-brake" class="content-link">CNC press brake</a>, the machine bed tends to deflect under pressure, 
+          resulting in uneven bending angles across the length of the part. Compensation systems counteract this deflection to ensure uniform bend angles.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Mechanical Compensation (Crowning)</h2>
+        <p class="content-paragraph" data-translate>
+          Mechanical compensation, also known as crowning, uses wedge-shaped blocks that can be adjusted to create a convex curve in the bed. 
+          This pre-compensates for the deflection that will occur during bending.
+        </p>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Advantages:</span></li>
+          <li data-translate>Simple, reliable mechanism with few moving parts</li>
+          <li data-translate>Lower initial cost compared to hydraulic systems</li>
+          <li data-translate>Minimal maintenance requirements</li>
+          <li data-translate>No hydraulic fluid or electrical components to maintain</li>
+        </ul>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Disadvantages:</span></li>
+          <li data-translate>Manual adjustment required for different workpiece lengths</li>
+          <li data-translate>Less precise than hydraulic compensation</li>
+          <li data-translate>Cannot be adjusted during the bending process</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Hydraulic Compensation</h2>
+        <p class="content-paragraph" data-translate>
+          Hydraulic compensation systems use hydraulic cylinders positioned along the bed to actively compensate for deflection.
+          The CNC control calculates the required compensation based on material properties, bend length, and tonnage.
+        </p>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Advantages:</span></li>
+          <li data-translate>Automatic compensation adjusted for each bend</li>
+          <li data-translate>Higher precision and consistency</li>
+          <li data-translate>Can compensate for various workpiece lengths without manual adjustment</li>
+          <li data-translate>CNC-controlled for optimal results</li>
+        </ul>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Disadvantages:</span></li>
+          <li data-translate>Higher initial investment cost</li>
+          <li data-translate>More complex system requiring regular maintenance</li>
+          <li data-translate>Additional hydraulic components that may need service</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Which Compensation System to Choose?</h2>
+        <p class="content-paragraph" data-translate>
+          Your choice depends on several factors:
+        </p>
+        <ul class="content-list">
+          <li data-translate><span class="content-bold">Production Volume:</span> High-volume operations benefit from the automation of hydraulic compensation</li>
+          <li data-translate><span class="content-bold">Part Variety:</span> Frequent changes in part length favor hydraulic systems</li>
+          <li data-translate><span class="content-bold">Precision Requirements:</span> Tight tolerances require hydraulic compensation</li>
+          <li data-translate><span class="content-bold">Budget:</span> Mechanical compensation offers good value for simpler applications</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-translate>Rucheng's Compensation Solutions</h2>
+        <p class="content-paragraph" data-translate>
+          Our <a href="../product.html#press-brake" class="content-link">CNC press brake machines</a> are available with both mechanical and hydraulic compensation systems. 
+          We can help you select the right solution based on your specific bending applications. Our technical team provides comprehensive training and support 
+          to ensure you get the most out of your press brake's compensation system.
+        </p>
+      </div>
+
+    </article>
+
+    <footer class="article-footer">
+      <div class="article-footer-meta">
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <span data-translate>Admin</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <span data-translate>March 14, 2022</span>
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+          </svg>
+          <span data-translate>Manufacturing & Technology</span>
+        </div>
+      </div>
+    </footer>
+
+    <div id="commentsContainer"></div>
+
+    <div class="back-to-blog">
+      <a href="../blog.html" class="back-link" data-translate>← Back to Blog</a>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/translator.min.js"></script>
+  <script src="../js/components.min.js"></script>
+  <script src="../js/comments.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize translator after components are loaded
+      setTimeout(() => {
+        const translator = new Translator({
+          defaultLang: 'en',
+          batchSize: 3,
+          delay: 100,
+          elements: '[data-translate]'
+        });
+      }, 500);
+
+      // Initialize comments system
+      const commentsSystem = new CommentsSystem('commentsContainer', {
+        storageKey: 'blog_comments',
+        articleId: 'cnc_bending_compensation',
+        maxComments: 100
+      });
+
+      const leaveCommentLink = document.querySelector('.meta-item:last-child');
+      if (leaveCommentLink) {
+        leaveCommentLink.style.cursor = 'pointer';
+        leaveCommentLink.addEventListener('click', function() {
+          commentsSystem.scrollToComments();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

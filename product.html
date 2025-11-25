@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Rucheng Intelligent</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <style>
+    /* Product Page Specific Styles */
+    .product-page {
+      padding: 40px 0;
+      background: #f8f9fa;
+    }
+
+    .product-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+    }
+
+    /* Product Categories Sidebar */
+    .product-categories {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .categories-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .categories-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #0074c2, #0056b3);
+      border-radius: 2px;
+    }
+
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-item {
+      margin-bottom: 12px;
+    }
+
+    .category-link {
+      display: block;
+      padding: 15px 20px;
+      color: #555;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      position: relative;
+    }
+
+    .category-link:hover,
+    .category-link.active {
+      background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+      color: #0074c2;
+      border-left-color: #0074c2;
+      transform: translateX(5px);
+      box-shadow: 0 2px 8px rgba(0, 116, 194, 0.15);
+    }
+
+    .category-link::before {
+      content: '▶';
+      position: absolute;
+      right: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: #0074c2;
+      font-size: 12px;
+    }
+
+    .category-link:hover::before,
+    .category-link.active::before {
+      opacity: 1;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      max-width: 500px;
+      justify-self: start;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    /* Specific styles for tall images like Punching Machine */
+    /* .product-card[data-category="punching-machine"] .product-image {
+      height: 410px;
+    }
+
+    .product-card[data-category="punching-machine"] .product-image img {
+      object-fit: contain;
+    } */
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 116, 194, 0.1) 0%, rgba(0, 86, 179, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+
+    .product-info {
+      padding: 25px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .product-description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .product-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .product-features li {
+      color: #555;
+      font-size: 13px;
+      margin-bottom: 5px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .product-features li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #0074c2;
+      font-weight: bold;
+    }
+
+    .product-cta {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .product-btn {
+      background: linear-gradient(135deg, #0074c2 0%, #0056b3 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .product-btn:hover {
+      background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 116, 194, 0.3);
+    }
+
+    /* Mobile Category Toggle Button */
+    .mobile-category-toggle {
+      display: none;
+      position: fixed;
+      top: 100px;
+      /* Position further below header */
+      right: 20px;
+      /* Move to right side */
+      z-index: 1000;
+      background: linear-gradient(135deg, #0074c2 0%, #0056b3 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 116, 194, 0.4);
+      transition: all 0.3s ease;
+      min-width: 140px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-category-toggle:hover {
+      background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+      transform: translateY(-2px);
+    }
+
+    .mobile-category-toggle .toggle-icon {
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .mobile-category-toggle.active .toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    /* Mobile Category Overlay */
+    .mobile-category-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-category-overlay.active {
+      opacity: 1;
+    }
+
+    /* Mobile Category Sidebar */
+    .mobile-category-sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 280px;
+      height: 100%;
+      background: #fff;
+      z-index: 1001;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-category-sidebar.active {
+      left: 0;
+    }
+
+    .mobile-category-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      background: #f8f9fa;
+      position: relative;
+    }
+
+    .mobile-category-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .mobile-category-content {
+      padding: 20px;
+    }
+
+    .mobile-category-content .category-list {
+      margin: 0;
+    }
+
+    .mobile-category-content .category-item {
+      margin-bottom: 8px;
+    }
+
+    .mobile-category-content .category-link {
+      padding: 15px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-category-content .category-link:hover,
+    .mobile-category-content .category-link.active {
+      background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+      color: #0074c2;
+      border-left: 3px solid #0074c2;
+      transform: translateX(5px);
+    }
+
+    .mobile-category-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #666;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-category-close:hover {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 769px) {
+      .mobile-category-toggle {
+        display: none !important;
+        /* Hide mobile toggle on desktop */
+      }
+
+      .mobile-category-overlay {
+        display: none !important;
+        /* Hide mobile overlay on desktop */
+      }
+
+      .mobile-category-sidebar {
+        display: none !important;
+        /* Hide mobile sidebar on desktop */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-categories {
+        display: none;
+        /* Hide desktop sidebar on mobile */
+      }
+
+      .mobile-category-toggle {
+        display: flex;
+        align-items: center;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-card {
+        max-width: 100%;
+        justify-self: stretch;
+      }
+
+      .category-link {
+        padding: 12px 15px;
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-page {
+        padding: 20px 0;
+      }
+
+      .product-container {
+        padding: 0 15px;
+      }
+
+      .mobile-category-toggle {
+        top: 90px;
+        /* Position below header on small screens */
+        right: 15px;
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 120px;
+      }
+
+      .mobile-category-toggle .toggle-icon {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- Mobile Category Toggle Button -->
+  <button class="mobile-category-toggle" id="mobileCategoryToggle">
+    <span class="toggle-icon">☰</span>
+    <span data-translate>Categories</span>
+  </button>
+
+  <!-- Mobile Category Overlay -->
+  <div class="mobile-category-overlay" id="mobileCategoryOverlay"></div>
+
+  <!-- Mobile Category Sidebar -->
+  <div class="mobile-category-sidebar" id="mobileCategorySidebar">
+    <div class="mobile-category-header">
+      <h3 data-translate>CATEGORIES</h3>
+      <button class="mobile-category-close" id="mobileCategoryClose">×</button>
+    </div>
+    <div class="mobile-category-content">
+      <ul class="category-list">
+        <li class="category-item">
+          <a href="#all-products" class="category-link active" data-translate>All Products</a>
+        </li>
+        <li class="category-item">
+          <a href="#press-brake" class="category-link" data-translate>Press Brake</a>
+        </li>
+        <li class="category-item">
+          <a href="#shearing-machines" class="category-link" data-translate>Shearing Machines</a>
+        </li>
+        <li class="category-item">
+          <a href="#laser-cutting" class="category-link" data-translate>Laser Cutting Machines</a>
+        </li>
+        <li class="category-item">
+          <a href="#plate-rolling" class="category-link" data-translate>Plate Rolling Machines</a>
+        </li>
+        <li class="category-item">
+          <a href="#punching-machine" class="category-link" data-translate>Punching machine</a>
+        </li>
+        <li class="category-item">
+          <a href="#hydraulic-presses" class="category-link" data-translate>Hydraulic Presses</a>
+        </li>
+        <!-- <li class="category-item">
+          <a href="#blades" class="category-link" data-translate>Blades & Knives</a>
+        </li> -->
+        <li class="category-item">
+          <a href="#molds" class="category-link" data-translate>Molds & Dies</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Product Page Content -->
+  <main class="product-page">
+    <div class="product-container">
+      <!-- Product Categories Sidebar (Desktop) -->
+      <aside class="product-categories">
+        <h2 class="categories-title" data-translate>CATEGORIES</h2>
+        <ul class="category-list">
+          <li class="category-item">
+            <a href="#all-products" class="category-link active" data-translate>All Products</a>
+          </li>
+          <li class="category-item">
+            <a href="#press-brake" class="category-link" data-translate>Press Brake</a>
+          </li>
+          <li class="category-item">
+            <a href="#shearing-machines" class="category-link" data-translate>Shearing Machines</a>
+          </li>
+          <li class="category-item">
+            <a href="#laser-cutting" class="category-link" data-translate>Laser Cutting Machines</a>
+          </li>
+          <li class="category-item">
+            <a href="#plate-rolling" class="category-link" data-translate>Plate Rolling Machines</a>
+          </li>
+          <li class="category-item">
+            <a href="#punching-machine" class="category-link" data-translate>Punching machine</a>
+          </li>
+          <li class="category-item">
+            <a href="#hydraulic-presses" class="category-link" data-translate>Hydraulic Presses</a>
+          </li>
+          <!-- <li class="category-item">
+            <a href="#blades" class="category-link" data-translate>Blades & Knives</a>
+          </li> -->
+          <li class="category-item">
+            <a href="#molds" class="category-link" data-translate>Molds & Dies</a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Product Grid -->
+      <section class="product-grid">
+
+              <!-- Electro-hydraulic CNC Press Brake -->
+              <article class="product-card" data-category="press-brake">
+                <a href="product/bending_machine/electro-hydraulic.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+                  <img src="/images/product/press_brake/dianye.jpg" alt="Electro-hydraulic CNC Press Brake">
+                  <div class="product-overlay"></div>
+          </div>
+          </a>
+                
+          <div class="product-info">
+                  <h3 class="product-name" data-translate>Electro-hydraulic CNC Press Brake</h3>
+                  <p class="product-description" data-translate>Advanced CNC press brake with electro-hydraulic system for precise bending
+                    operations.</p>
+                  <ul class="product-features">
+                    <li data-translate>Electro-hydraulic system</li>
+                    <li data-translate>CNC precision control</li>
+                    <li data-translate>Advanced safety features</li>
+                  </ul>
+                  <div class="product-cta">
+                    <a href="product/bending_machine/electro-hydraulic.html" class="product-btn" data-translate>Learn More</a>
+                  </div>
+                </div>
+              </article>
+      
+              <!-- Torsion-synchro NC Press Brake -->
+              <article class="product-card" data-category="press-brake">
+                <a href="/product/bending_machine/torsion-synchro.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+                  <img src="/images/product/press_brake/niuzhou.jpg" alt="Torsion-synchro NC Press Brake">
+                  <div class="product-overlay"></div>
+          </div>
+          </a>
+                
+          <div class="product-info">
+                  <h3 class="product-name" data-translate>Torsion-synchro NC Press Brake</h3>
+                  <p class="product-description" data-translate>Synchronized torsion bar system for consistent and accurate bending results.
+                  </p>
+                  <ul class="product-features">
+                    <li data-translate>Torsion-synchro system</li>
+                    <li data-translate>NC control technology</li>
+                    <li data-translate>Manual foot pedal operation</li>
+                    <li data-translate>Integrated control panel</li>
+                  </ul>
+                  <div class="product-cta">
+                    <a href="/product/bending_machine/torsion-synchro.html" class="product-btn" data-translate>Learn More</a>
+                  </div>
+                </div>
+              </article>
+      
+              <!-- Tandem Press Brake -->
+              <article class="product-card" data-category="press-brake">
+                <a href="/product/bending_machine/tandem-press-brake.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+                  <img src="/images/product/press_brake/chuanlian1.jpg" alt="Tandem Press Brake">
+                  <div class="product-overlay"></div>
+          </div>
+          </a>
+                
+          <div class="product-info">
+                  <h3 class="product-name" data-translate>Tandem Press Brake</h3>
+                  <p class="product-description" data-translate>High-capacity tandem press brake for large-scale production requirements.</p>
+                  <ul class="product-features">
+                    <li data-translate>Dual machine configuration</li>
+                    <li data-translate>Extended working length</li>
+                    <li data-translate>High production capacity</li>
+                    <li data-translate>Synchronized operation</li>
+                  </ul>
+                  <div class="product-cta">
+                    <a href="/product/bending_machine/tandem-press-brake.html" class="product-btn" data-translate>Learn More</a>
+                  </div>
+                </div>
+              </article>
+      
+              <!-- Heavy-duty Press Brake -->
+              <article class="product-card" data-category="press-brake">
+                <a href="/product/bending_machine/heavy-duty-press-brake.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+                  <img src="/images/product/press_brake/heavy.jpg" alt="Heavy-duty Press Brake">
+                  <div class="product-overlay"></div>
+          </div>
+          </a>
+                
+          <div class="product-info">
+                  <h3 class="product-name" data-translate>Heavy-duty Press Brake</h3>
+                  <p class="product-description" data-translate>Robust press brake designed for heavy-duty industrial applications.</p>
+                  <ul class="product-features">
+                    <li data-translate>Heavy-duty construction</li>
+                    <li data-translate>High tonnage capacity</li>
+                    <li data-translate>Precision measurement scale</li>
+                    <li data-translate>Industrial-grade reliability</li>
+                  </ul>
+                  <div class="product-cta">
+                    <a href="/product/bending_machine/heavy-duty-press-brake.html" class="product-btn" data-translate>Learn More</a>
+                  </div>
+                </div>
+              </article>
+      
+              <!-- Robotic Press Brake -->
+              <article class="product-card" data-category="press-brake">
+                <a href="/product/bending_machine/robotic-press-brake.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+                  <img src="/images/product/press_brake/robotic.jpg" alt="Robotic Press Brake">
+                  <div class="product-overlay"></div>
+          </div>
+          </a>
+                
+          <div class="product-info">
+                  <h3 class="product-name" data-translate>Robotic Press Brake</h3>
+                  <p class="product-description" data-translate>Automated press brake with robotic integration for enhanced productivity.</p>
+                  <ul class="product-features">
+                    <li data-translate>Robotic arm automation</li>
+                    <li data-translate>Track-mounted system</li>
+                    <li data-translate>FORTOM brand technology</li>
+                    <li data-translate>Automated material handling</li>
+                  </ul>
+                  <div class="product-cta">
+                    <a href="/product/bending_machine/robotic-press-brake.html" class="product-btn" data-translate>Learn More</a>
+                  </div>
+                </div>
+              </article>
+  
+        <!-- Guillotine Shear -->
+        <article class="product-card" data-category="shearing-machines">
+          <a href="/product/shearing_machine/guillotine_shearing_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/shearing_machine/guillotine_shear1.jpg" alt="Guillotine Shear">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Guillotine Shear</h3>
+            <p class="product-description" data-translate>High-precision guillotine shear with advanced control system for clean
+              cutting operations.</p>
+            <ul class="product-features">
+              <li data-translate>Digital control panel</li>
+              <li data-translate>Safety protection system</li>
+              <li data-translate>High cutting accuracy</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/shearing_machine/guillotine_shearing_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Swing Beam Shearing Machine -->
+        <article class="product-card" data-category="shearing-machines">
+          <a href="/product/shearing_machine/swing_beam_shearing_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/shearing_machine/swing_shear1.jpg" alt="Swing Beam Shearing Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Swing Beam Shearing Machine</h3>
+            <p class="product-description" data-translate>Hydraulic swing beam shearing machine with NC control system for precision
+              sheet metal cutting.</p>
+            <ul class="product-features">
+              <li data-translate>Swing beam cutting action</li>
+              <li data-translate>NC back gauge system</li>
+              <li data-translate>Hydraulic drive system</li>
+              <li data-translate>CE safety certified</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/shearing_machine/swing_beam_shearing_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- T1 Single Table Fiber Laser Cutting Machine -->
+        <article class="product-card" data-category="laser-cutting">
+          <a href="product/laser_cutting_machine/single_table_fiber_laser_cutting_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/laser_cutting_machine/single_table/zhutu.jpg" alt="T1 Single Table Fiber Laser Cutting Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Single Table Fiber Laser Cutting Machine</h3>
+            <p class="product-description" data-translate>Modern fiber laser cutting machine with single table design for efficient
+              processing.</p>
+            <ul class="product-features">
+              <li data-translate>Fiber laser technology</li>
+              <li data-translate>Single table design</li>
+              <li data-translate>High cutting speed</li>
+              <li data-translate>Precision cutting capability</li>
+            </ul>
+            <div class="product-cta">
+              <a href="product/laser_cutting_machine/single_table_fiber_laser_cutting_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- T2 Double Table Fiber Laser Cutting Machine -->
+        <article class="product-card" data-category="laser-cutting">
+          <a href="/product/laser_cutting_machine/double_table_fiber_laser_cutting_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/laser_cutting_machine/double_table/zhutu.jpg" alt="T2 Double Table Fiber Laser Cutting Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Double Table Fiber Laser Cutting Machine</h3>
+            <p class="product-description" data-translate>Advanced double table fiber laser cutting system for continuous production.
+            </p>
+            <ul class="product-features">
+              <li data-translate>Double table system</li>
+              <li data-translate>Continuous operation</li>
+              <li data-translate>High productivity</li>
+              <li data-translate>Automated material handling</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/laser_cutting_machine/double_table_fiber_laser_cutting_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- T3 Series Fully Enclosed Laser Cutting Machine -->
+        <article class="product-card" data-category="laser-cutting">
+          <a href="/product/laser_cutting_machine/fully_enclosed_fiber_laser_cutting_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/laser_cutting_machine/fully_closed/zhutu.jpg" alt="T3 Series Fully Enclosed Laser Cutting Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Series Fully Enclosed Laser Cutting Machine</h3>
+            <p class="product-description" data-translate>Fully enclosed laser cutting machine with enhanced safety and precision.</p>
+            <ul class="product-features">
+              <li data-translate>Fully enclosed design</li>
+              <li data-translate>Enhanced safety features</li>
+              <li data-translate>High precision cutting</li>
+              <li data-translate>Industrial-grade construction</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/laser_cutting_machine/fully_enclosed_fiber_laser_cutting_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TR1 Single Panel Tube Integrated Laser Cutting -->
+        <article class="product-card" data-category="laser-cutting">
+          <a href="/product/laser_cutting_machine/plate_tube_integrated_laser_cutting_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/laser_cutting_machine/plate_tube/zhutu1.jpg" alt="TR1 Single Panel Tube Integrated Laser Cutting">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Single Panel Tube Integrated Laser Cutting</h3>
+            <p class="product-description" data-translate>Integrated laser cutting system for both flat panels and tubes.</p>
+            <ul class="product-features">
+              <li data-translate>Panel and tube cutting</li>
+              <li data-translate>Integrated system design</li>
+              <li data-translate>Versatile applications</li>
+              <li data-translate>High efficiency operation</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/laser_cutting_machine/plate_tube_integrated_laser_cutting_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TR2 Exchange Table Plate Tube Integrated Laser -->
+        <!-- <article class="product-card" data-category="laser-cutting">
+          <div class="product-image">
+            <img src="images/product/dianye.jpg" alt="TR2 Exchange Table Plate Tube Integrated Laser">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Exchange Table Plate Tube Integrated Laser</h3>
+            <p class="product-description" data-translate>Advanced exchange table system for continuous plate and tube processing.</p>
+            <ul class="product-features">
+              <li data-translate>Exchange table system</li>
+              <li data-translate>Continuous operation</li>
+              <li data-translate>Plate and tube processing</li>
+              <li data-translate>High production efficiency</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article> -->
+
+        <!-- TR3 Full-Protection Interactive Table Panel Tube Integrated Laser -->
+        <!-- <article class="product-card" data-category="laser-cutting">
+          <div class="product-image">
+            <img src="images/index/press_brake.jpg"
+              alt="TR3 Full-Protection Interactive Table Panel Tube Integrated Laser">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Full-Protection Interactive Table Panel Tube Integrated Laser</h3>
+            <p class="product-description" data-translate>Full-protection interactive table system for advanced laser cutting
+              applications.</p>
+            <ul class="product-features">
+              <li data-translate>Full protection system</li>
+              <li data-translate>Interactive table design</li>
+              <li data-translate>Panel and tube integration</li>
+              <li data-translate>Advanced control system</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article> -->
+
+        <!-- Tube Laser Cutting Machine -->
+        <article class="product-card" data-category="laser-cutting">
+          <a href="/product/laser_cutting_machine/tube_laser_cutting_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/laser_cutting_machine/tube/zhutu.jpg" alt="Tube Laser Cutting Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Tube Laser Cutting Machine</h3>
+            <p class="product-description" data-translate>Specialized laser cutting machine designed for tube and pipe processing.</p>
+            <ul class="product-features">
+              <li data-translate>Tube and pipe cutting</li>
+              <li data-translate>High precision laser</li>
+              <li data-translate>Automated feeding system</li>
+              <li data-translate>Versatile tube sizes</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/laser_cutting_machine/tube_laser_cutting_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- W11 Three-roller Plate Rolling Machine -->
+        <!-- <article class="product-card" data-category="plate-rolling">
+          <div class="product-image">
+            <img src="images/banner3.jpg" alt="W11 Three-roller Plate Rolling Machine">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>W11 Three-roller Plate Rolling Machine</h3>
+            <p class="product-description" data-translate>Three-roller plate rolling machine for precise metal plate forming.</p>
+            <ul class="product-features">
+              <li data-translate>Three-roller system</li>
+              <li data-translate>Precise plate forming</li>
+              <li data-translate>Adjustable roller positions</li>
+              <li data-translate>Heavy-duty construction</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article> -->
+
+        <!-- W11S Universal Veneer Reeling Machine -->
+        <article class="product-card" data-category="plate-rolling">
+          <a href="/product/rolling_machine/plate_rolling_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/rolling_machine/zhutu1.jpg" alt="W11S Universal Veneer Reeling Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>W11S Universal Veneer Reeling Machine</h3>
+            <p class="product-description" data-translate>Universal veneer reeling machine for various material processing
+              applications.</p>
+            <ul class="product-features">
+              <li data-translate>Universal design</li>
+              <li data-translate>Veneer processing</li>
+              <li data-translate>Versatile applications</li>
+              <li data-translate>Robust construction</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/rolling_machine/plate_rolling_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Punching Machine -->
+        <article class="product-card" data-category="punching-machine">
+          <a href="/product/punching_machine/cnc_punching_machine.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="images/product/punching_machine/zhutu.jpg" alt="Punching Machine">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Punching Machine</h3>
+            <p class="product-description" data-translate>Hydraulic punching machine for precision hole punching in metal sheets and
+              plates.
+            </p>
+            <ul class="product-features">
+              <li data-translate>High punching force</li>
+              <li data-translate>Precision hole making</li>
+              <li data-translate>Hydraulic drive system</li>
+              <li data-translate>Multiple die options</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/punching_machine/cnc_punching_machine.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Four-Column Hydraulic Press -->
+        <article class="product-card" data-category="hydraulic-presses">
+          <a href="/product/hydraulic_press/four_column_hydraulic_press.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/four_column_press/zhutu.jpg" alt="Four-Column Hydraulic Press">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Four-Column Hydraulic Press</h3>
+            <p class="product-description" data-translate>Heavy-duty four-column hydraulic press for industrial pressing applications.
+            </p>
+            <ul class="product-features">
+              <li data-translate>Four-column design</li>
+              <li data-translate>High tonnage capacity</li>
+              <li data-translate>Hydraulic operation</li>
+              <li data-translate>Industrial applications</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/hydraulic_press/four_column_hydraulic_press.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- BLADE PRODUCTS SECTION COMMENTED OUT
+        Rolling Shear Slitting Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/index/press_brake.jpg" alt="Rolling Shear Slitting Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Rolling Shear Slitting Blade</h3>
+            <p class="product-description" data-translate>Precision slitting blades for rolling shear applications.</p>
+            <ul class="product-features">
+              <li data-translate>Precision ground</li>
+              <li data-translate>Multiple sizes available</li>
+              <li data-translate>High wear resistance</li>
+              <li data-translate>Professional finish</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Slitting Round Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/banner2.jpg" alt="Slitting Round Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Slitting Round Blade</h3>
+            <p class="product-description" data-translate>High-quality round blades for precision slitting operations.</p>
+            <ul class="product-features">
+              <li data-translate>Round blade design</li>
+              <li data-translate>Sharp cutting edges</li>
+              <li data-translate>Central bore mounting</li>
+              <li data-translate>Polished finish</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Shearing Machine Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/banner3.jpg" alt="Shearing Machine Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Shearing Machine Blade</h3>
+            <p class="product-description" data-translate>Professional shearing machine blades for clean cutting operations.</p>
+            <ul class="product-features">
+              <li data-translate>Professional shearing</li>
+              <li data-translate>Clean cutting edges</li>
+              <li data-translate>Multiple hole patterns</li>
+              <li data-translate>Durable construction</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Ink Knife
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/logo.jpg" alt="Ink Knife">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Ink Knife</h3>
+            <p class="product-description" data-translate>Specialized ink knife for printing and coating applications.</p>
+            <ul class="product-features">
+              <li data-translate>Specialized design</li>
+              <li data-translate>Printing applications</li>
+              <li data-translate>Coating machinery</li>
+              <li data-translate>Compact unit</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Rolling Knife
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/logo.png" alt="Rolling Knife">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Rolling Knife</h3>
+            <p class="product-description" data-translate>Serrated rolling knives for specialized cutting applications.</p>
+            <ul class="product-features">
+              <li data-translate>Serrated edge design</li>
+              <li data-translate>Interlocking mechanism</li>
+              <li data-translate>Specialized cutting</li>
+              <li data-translate>Multiple hole patterns</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Slow Crusher Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/product/dianye.jpg" alt="Slow Crusher Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Slow Crusher Blade</h3>
+            <p class="product-description" data-translate>Heavy-duty crusher blades for material processing applications.</p>
+            <ul class="product-features">
+              <li data-translate>Heavy-duty design</li>
+              <li data-translate>Serrated edges</li>
+              <li data-translate>Central keyway mounting</li>
+              <li data-translate>Material processing</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Toothed Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/index/press_brake.jpg" alt="Toothed Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Toothed Blade</h3>
+            <p class="product-description" data-translate>Precision toothed blades for specialized cutting applications.</p>
+            <ul class="product-features">
+              <li data-translate>Multiple sizes</li>
+              <li data-translate>Serrated edges</li>
+              <li data-translate>Precision cutting</li>
+              <li data-translate>Versatile applications</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Chipper Blades
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/banner2.jpg" alt="Chipper Blades">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Chipper Blades</h3>
+            <p class="product-description" data-translate>Professional chipper blades with comb-like design for material processing.
+            </p>
+            <ul class="product-features">
+              <li data-translate>Comb-like design</li>
+              <li data-translate>Notched edges</li>
+              <li data-translate>Material processing</li>
+              <li data-translate>Professional quality</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Corrugated Paper Cutter
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/banner3.jpg" alt="Corrugated Paper Cutter">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Corrugated Paper Cutter</h3>
+            <p class="product-description" data-translate>Specialized cutting rings for corrugated paper processing.</p>
+            <ul class="product-features">
+              <li data-translate>Circular design</li>
+              <li data-translate>Multiple mounting holes</li>
+              <li data-translate>Paper processing</li>
+              <li data-translate>Polished surface</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        Crusher Blade
+        <article class="product-card" data-category="blades">
+          <div class="product-image">
+            <img src="images/logo.jpg" alt="Crusher Blade">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Crusher Blade</h3>
+            <p class="product-description" data-translate>Heavy-duty crusher blades with multiple oval slots for material crushing.</p>
+            <ul class="product-features">
+              <li data-translate>Heavy-duty construction</li>
+              <li data-translate>Multiple oval slots</li>
+              <li data-translate>Material crushing</li>
+              <li data-translate>Robust design</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        END OF BLADE PRODUCTS SECTION -->
+
+        <!-- CNC Bending Machine Mold -->
+        <article class="product-card" data-category="molds">
+          <a href="/product/press_brake_mold/cnc_bending_machine_mold.html" style="text-decoration: none; color: inherit; display: block;">
+          <div class="product-image">
+            <img src="/images/product/press_brake_mold/zhutu.jpg" alt="CNC Bending Machine Mold">
+            <div class="product-overlay"></div>
+          </div>
+          </a>
+          
+          <div class="product-info">
+            <h3 class="product-name" data-translate>CNC Bending Machine Mold</h3>
+            <p class="product-description" data-translate>Precision mold components for CNC bending machine applications.</p>
+            <ul class="product-features">
+              <li data-translate>CNC precision</li>
+              <li data-translate>Mold components</li>
+              <li data-translate>Bending applications</li>
+              <li data-translate>Interlocking design</li>
+            </ul>
+            <div class="product-cta">
+              <a href="/product/press_brake_mold/cnc_bending_machine_mold.html" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Press Brake Flattening Die -->
+        <!-- <article class="product-card" data-category="molds">
+          <div class="product-image">
+            <img src="images/product/dianye.jpg" alt="Press Brake Flattening Die">
+            <div class="product-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-translate>Press Brake Flattening Die</h3>
+            <p class="product-description" data-translate>Professional flattening dies for press brake operations.</p>
+            <ul class="product-features">
+              <li data-translate>Press brake application</li>
+              <li data-translate>Flattening operation</li>
+              <li data-translate>Stepped profile design</li>
+              <li data-translate>Professional quality</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#" class="product-btn" data-translate>Learn More</a>
+            </div>
+          </div>
+        </article> -->
+
+  
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <script src="js/translator.min.js"></script>
+  <script src="js/components.min.js"></script>
+  <script>
+    // Product page specific JavaScript
+    document.addEventListener('DOMContentLoaded', function () {
+      // Mobile category menu elements
+      const mobileToggle = document.getElementById('mobileCategoryToggle');
+      const mobileSidebar = document.getElementById('mobileCategorySidebar');
+      const mobileOverlay = document.getElementById('mobileCategoryOverlay');
+      const mobileClose = document.getElementById('mobileCategoryClose');
+
+      // Category navigation and filtering
+      const categoryLinks = document.querySelectorAll('.category-link');
+      const productCards = document.querySelectorAll('.product-card');
+
+      // Mobile menu toggle functionality
+      function openMobileMenu() {
+        mobileSidebar.classList.add('active');
+        mobileOverlay.classList.add('active');
+        mobileToggle.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+
+      function closeMobileMenu() {
+        mobileSidebar.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+
+      // Event listeners for mobile menu
+      mobileToggle.addEventListener('click', openMobileMenu);
+      mobileClose.addEventListener('click', closeMobileMenu);
+      mobileOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close mobile menu when clicking on a category link
+      categoryLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Remove active class from all links
+          categoryLinks.forEach(l => l.classList.remove('active'));
+
+          // Add active class to clicked link
+          this.classList.add('active');
+
+          // Get selected category
+          const selectedCategory = this.getAttribute('href').substring(1);
+
+          // Filter products
+          filterProducts(selectedCategory);
+
+          // Close mobile menu after selection
+          closeMobileMenu();
+        });
+      });
+
+      // Product filtering function
+      function filterProducts(category) {
+        productCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+
+          if (category === 'all-products' || cardCategory === category) {
+            card.style.display = 'block';
+            // Add fade-in animation
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.transition = 'all 0.3s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Close mobile menu on escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      });
+
+      // Initialize with all products shown
+      filterProducts('all-products');
+
+      // Handle URL hash on page load
+      function handleInitialHash() {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+          // Find and click the corresponding category link
+          const targetLink = document.querySelector(`[href="#${hash}"]`);
+          if (targetLink) {
+            targetLink.click();
+          }
+        }
+      }
+
+      // Handle hash changes
+      window.addEventListener('hashchange', function () {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+          const targetLink = document.querySelector(`[href="#${hash}"]`);
+          if (targetLink) {
+            // Remove active class from all links
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to target link
+            targetLink.classList.add('active');
+            // Filter products
+            filterProducts(hash);
+          }
+        }
+      });
+
+      // Handle initial hash on page load
+      handleInitialHash();
+    });
+  </script>
+</body>
+
+</html>

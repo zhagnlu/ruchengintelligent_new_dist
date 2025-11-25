@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translation Debug Tool</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #0074c2;
+      padding-bottom: 10px;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    button {
+      background: #0074c2;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button.secondary {
+      background: #6c757d;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .warning {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+    .info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+    tr:hover {
+      background: #f8f9fa;
+    }
+    .missing {
+      background: #fff3cd !important;
+    }
+    .found {
+      background: #d4edda !important;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-card.success {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    .stat-card.warning {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .text-preview {
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 翻译系统实时调试工具</h1>
+
+  <div class="section">
+    <h2>📋 测试控制</h2>
+    <div class="controls">
+      <select id="pageSelect">
+        <option value="index.html">首页 (index.html)</option>
+        <option value="about.html">关于 (about.html)</option>
+        <option value="product.html">产品 (product.html)</option>
+        <option value="service.html">服务 (service.html)</option>
+        <option value="blog.html">博客 (blog.html)</option>
+        <option value="contact.html">联系 (contact.html)</option>
+      </select>
+      <select id="langSelect">
+        <option value="zh">中文</option>
+        <option value="es">西班牙语</option>
+        <option value="fr">法语</option>
+        <option value="de">德语</option>
+        <option value="ja">日语</option>
+        <option value="ar">阿拉伯语</option>
+        <option value="ru">俄语</option>
+      </select>
+      <button onclick="scanPage()">扫描当前页面</button>
+      <button onclick="scanSelectedPage()" class="secondary">扫描选定页面</button>
+      <button onclick="exportMissing()" class="secondary">导出缺失文本</button>
+    </div>
+  </div>
+
+  <div class="section" id="statsSection" style="display: none;">
+    <h2>📊 统计数据</h2>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">总文本数</div>
+        <div class="stat-number" id="totalCount">0</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-label">已有翻译</div>
+        <div class="stat-number" id="foundCount">0</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">缺失翻译</div>
+        <div class="stat-number" id="missingCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">完成度</div>
+        <div class="stat-number" id="percentage">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="resultsSection" style="display: none;">
+    <h2>📝 详细结果</h2>
+    <div id="results"></div>
+  </div>
+
+  <script src="js/translator.min.js"></script>
+  <script>
+    let translator;
+    let currentResults = [];
+
+    // 初始化翻译器
+    async function initTranslator() {
+      if (!translator) {
+        translator = new Translator({
+          defaultLang: 'en',
+          batchSize: 3,
+          delay: 100,
+          elements: '[data-translate]'
+        });
+
+        // 等待字典加载
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      return translator;
+    }
+
+    // 扫描当前页面
+    async function scanPage() {
+      const lang = document.getElementById('langSelect').value;
+      await scanPageForLanguage(window.location.pathname.split('/').pop() || 'debug-translation.html', lang);
+    }
+
+    // 扫描选定的页面
+    async function scanSelectedPage() {
+      const page = document.getElementById('pageSelect').value;
+      const lang = document.getElementById('langSelect').value;
+      await scanPageForLanguage(page, lang);
+    }
+
+    // 扫描指定页面和语言
+    async function scanPageForLanguage(page, lang) {
+      document.getElementById('results').innerHTML = '<div class="info">正在扫描...</div>';
+      document.getElementById('statsSection').style.display = 'block';
+      document.getElementById('resultsSection').style.display = 'block';
+
+      try {
+        // 初始化翻译器
+        await initTranslator();
+
+        // 检查字典是否加载
+        if (!translator.dictionaries[lang]) {
+          throw new Error(`字典 ${lang}.json 未加载`);
+        }
+
+        const dictionary = translator.dictionaries[lang];
+
+        // 获取页面内容
+        const response = await fetch(page);
+        const html = await response.text();
+
+        // 提取所有 data-translate 文本
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const elements = doc.querySelectorAll('[data-translate]');
+
+        const results = [];
+        let foundCount = 0;
+        let missingCount = 0;
+
+        elements.forEach(element => {
+          const text = element.textContent.trim();
+          const normalizedText = text.replace(/\s+/g, ' ').trim();
+
+          // 检查字典
+          const found = dictionary[text] || dictionary[normalizedText];
+
+          results.push({
+            original: text,
+            normalized: normalizedText,
+            found: !!found,
+            translation: found || '【缺失】'
+          });
+
+          if (found) {
+            foundCount++;
+          } else {
+            missingCount++;
+          }
+        });
+
+        currentResults = results;
+
+        // 更新统计
+        const total = results.length;
+        document.getElementById('totalCount').textContent = total;
+        document.getElementById('foundCount').textContent = foundCount;
+        document.getElementById('missingCount').textContent = missingCount;
+        document.getElementById('percentage').textContent =
+          total > 0 ? `${((foundCount / total) * 100).toFixed(1)}%` : '0%';
+
+        // 显示结果表格
+        displayResults(results, page, lang);
+
+      } catch (error) {
+        document.getElementById('results').innerHTML =
+          `<div class="error">错误：${error.message}</div>`;
+      }
+    }
+
+    // 显示结果
+    function displayResults(results, page, lang) {
+      const missing = results.filter(r => !r.found);
+      const found = results.filter(r => r.found);
+
+      let html = `<h3>📄 页面：${page} | 🌐 语言：${lang}</h3>`;
+
+      if (missing.length > 0) {
+        html += `<h4 style="color: #856404;">⚠️ 缺失翻译（${missing.length} 个）</h4>`;
+        html += '<table>';
+        html += '<tr><th>#</th><th>原文</th><th>规范化后</th><th>状态</th></tr>';
+
+        missing.forEach((item, index) => {
+          html += `<tr class="missing">
+            <td>${index + 1}</td>
+            <td><div class="text-preview" title="${escapeHtml(item.original)}">${escapeHtml(item.original.substring(0, 50))}${item.original.length > 50 ? '...' : ''}</div></td>
+            <td><div class="text-preview" title="${escapeHtml(item.normalized)}">${escapeHtml(item.normalized.substring(0, 50))}${item.normalized.length > 50 ? '...' : ''}</div></td>
+            <td style="color: #721c24; font-weight: bold;">缺失</td>
+          </tr>`;
+        });
+
+        html += '</table>';
+      }
+
+      if (found.length > 0) {
+        html += `<h4 style="color: #155724; margin-top: 30px;">✅ 已有翻译（${found.length} 个）</h4>`;
+        html += '<details><summary>点击查看已翻译的文本</summary>';
+        html += '<table>';
+        html += '<tr><th>#</th><th>原文</th><th>翻译</th></tr>';
+
+        found.slice(0, 20).forEach((item, index) => {
+          html += `<tr class="found">
+            <td>${index + 1}</td>
+            <td><div class="text-preview">${escapeHtml(item.original.substring(0, 40))}${item.original.length > 40 ? '...' : ''}</div></td>
+            <td><div class="text-preview">${escapeHtml(item.translation.substring(0, 40))}${item.translation.length > 40 ? '...' : ''}</div></td>
+          </tr>`;
+        });
+
+        if (found.length > 20) {
+          html += `<tr><td colspan="3" style="text-align: center; color: #666;">... 还有 ${found.length - 20} 个</td></tr>`;
+        }
+
+        html += '</table></details>';
+      }
+
+      document.getElementById('results').innerHTML = html;
+    }
+
+    // 导出缺失文本
+    function exportMissing() {
+      if (!currentResults || currentResults.length === 0) {
+        alert('请先扫描页面');
+        return;
+      }
+
+      const missing = currentResults.filter(r => !r.found);
+
+      if (missing.length === 0) {
+        alert('没有缺失的翻译！');
+        return;
+      }
+
+      // 生成 JSON 格式
+      let json = '{\n';
+      missing.forEach((item, index) => {
+        const key = item.normalized;
+        json += `  "${key.replace(/"/g, '\\"')}": "【需要翻译】"${index < missing.length - 1 ? ',' : ''}\n`;
+      });
+      json += '}';
+
+      // 下载文件
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'missing_translations.json';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert(`已导出 ${missing.length} 个缺失翻译到 missing_translations.json`);
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // 页面加载时初始化
+    window.addEventListener('load', async () => {
+      console.log('初始化翻译调试工具...');
+      await initTranslator();
+      console.log('翻译器已加载，字典状态：', translator.getCacheStats());
+    });
+  </script>
+</body>
+</html>
