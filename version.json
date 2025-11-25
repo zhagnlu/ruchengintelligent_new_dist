@@ -1,7 +1,7 @@
 {
-  "version": "v2025.11.24-b4c8c85",
+  "version": "v2025.11.25-dcc4e5c",
   "environment": "staging",
-  "buildDate": "2025-11-24 12:18:40",
+  "buildDate": "2025-11-25 15:53:45",
   "gitBranch": "main",
-  "gitCommit": "b4c8c85"
+  "gitCommit": "dcc4e5c"
 }
