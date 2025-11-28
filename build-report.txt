@@ -2,14 +2,14 @@
   Rucheng Technology Website - Build Report
 ═══════════════════════════════════════════════════════
 
-Version:     v2025.11.28-f6a8182
+Version:     v2025.11.28-07da8b4
 Environment: staging
-Build Date:  2025-11-28 11:40:20
+Build Date:  2025-11-28 18:21:22
 Total Size:   26M
 
 Git Info:
   Branch:    main
-  Commit:    f6a8182
+  Commit:    07da8b4
 
 Directory Sizes:
   dist/about.html: 28K
@@ -47,4 +47,4 @@ File Counts:
   JS files:    9
   JSON files:  303
 
-Build completed successfully at Fri Nov 28 11:40:55 CST 2025
+Build completed successfully at Fri Nov 28 18:21:52 CST 2025
