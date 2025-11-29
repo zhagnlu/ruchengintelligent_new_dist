@@ -2,9 +2,9 @@
   Rucheng Technology Website - Build Report
 ═══════════════════════════════════════════════════════
 
-Version:     v2025.11.28-07da8b4
+Version:     v2025.11.29-07da8b4
 Environment: staging
-Build Date:  2025-11-28 18:21:22
+Build Date:  2025-11-29 15:52:36
 Total Size:   26M
 
 Git Info:
@@ -24,6 +24,7 @@ Directory Sizes:
   dist/favicon-96x96.png: 8,0K
   dist/favicon.ico: 16K
   dist/favicon.svg: 248K
+  dist/fonts: 40K
   dist/force-create-selector.html: 20K
   dist/generate-favicon.html: 8,0K
   dist/images: 18M
@@ -47,4 +48,4 @@ File Counts:
   JS files:    9
   JSON files:  303
 
-Build completed successfully at Fri Nov 28 18:21:52 CST 2025
+Build completed successfully at Sat Nov 29 15:53:09 CST 2025
