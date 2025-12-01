@@ -2,20 +2,20 @@
   Rucheng Technology Website - Build Report
 ═══════════════════════════════════════════════════════
 
-Version:     v2025.11.29-07da8b4
+Version:     v2025.12.01-b925d4f
 Environment: staging
-Build Date:  2025-11-29 15:52:36
+Build Date:  2025-12-01 15:48:48
 Total Size:   26M
 
 Git Info:
   Branch:    main
-  Commit:    07da8b4
+  Commit:    b925d4f
 
 Directory Sizes:
   dist/about.html: 28K
   dist/apple-touch-icon.png: 16K
   dist/blog.html: 24K
-  dist/blogs: 188K
+  dist/blogs: 204K
   dist/build-report.txt: 0B
   dist/components: 20K
   dist/contact.html: 24K
@@ -28,7 +28,7 @@ Directory Sizes:
   dist/force-create-selector.html: 20K
   dist/generate-favicon.html: 8,0K
   dist/images: 18M
-  dist/index.html: 36K
+  dist/index.html: 40K
   dist/js: 84K
   dist/locales: 4,4M
   dist/localhost_2025-11-27_14-49-32.report.html: 876K
@@ -48,4 +48,4 @@ File Counts:
   JS files:    9
   JSON files:  303
 
-Build completed successfully at Sat Nov 29 15:53:09 CST 2025
+Build completed successfully at Mon Dec  1 15:49:17 CST 2025
