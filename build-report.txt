@@ -2,20 +2,20 @@
   Rucheng Technology Website - Build Report
 ═══════════════════════════════════════════════════════
 
-Version:     v2025.12.15-a288410
+Version:     v2025.12.15-a5e3db6
 Environment: staging
-Build Date:  2025-12-15 15:39:23
-Total Size:   29M
+Build Date:  2025-12-15 20:45:21
+Total Size:   30M
 
 Git Info:
-  Branch:    fix_glag
-  Commit:    a288410
+  Branch:    main1
+  Commit:    a5e3db6
 
 Directory Sizes:
   dist/about.html: 32K
   dist/apple-touch-icon.png: 20K
   dist/blog.html: 28K
-  dist/blogs: 208K
+  dist/blogs: 300K
   dist/build-report.txt: 0B
   dist/components: 20K
   dist/contact.html: 28K
@@ -26,11 +26,11 @@ Directory Sizes:
   dist/favicon.svg: 124K
   dist/fonts: 40K
   dist/force-create-selector.html: 20K
-  dist/generate-favicon.html: 8.0K
-  dist/images: 22M
+  dist/generate-favicon.html: 8,0K
+  dist/images: 21M
   dist/index.html: 40K
   dist/js: 84K
-  dist/locales: 4,4M
+  dist/locales: 4,7M
   dist/localhost_2025-11-27_14-49-32.report.html: 876K
   dist/product: 1,5M
   dist/product.html: 72K
@@ -38,14 +38,15 @@ Directory Sizes:
   dist/scripts: 16K
   dist/service.html: 36K
   dist/site.webmanifest: 4,0K
+  dist/sitemap.xml: 8,0K
   dist/test-favicon.html: 8,0K
   dist/test-translation.html: 8,0K
   dist/version.json: 4,0K
 
 File Counts:
-  HTML files:  46
+  HTML files:  47
   CSS files:   8
   JS files:    9
   JSON files:  317
 
-Build completed successfully at Mon Dec 15 15:39:47 CST 2025
+Build completed successfully at Mon Dec 15 20:45:45 CST 2025

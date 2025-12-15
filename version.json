@@ -1,7 +1,7 @@
 {
-  "version": "v2025.12.15-a288410",
+  "version": "v2025.12.15-a5e3db6",
   "environment": "staging",
-  "buildDate": "2025-12-15 15:39:23",
-  "gitBranch": "fix_glag",
-  "gitCommit": "a288410"
+  "buildDate": "2025-12-15 20:45:21",
+  "gitBranch": "main1",
+  "gitCommit": "a5e3db6"
 }
