@@ -1,6 +1,54 @@
 RewriteEngine On
 
-# 1. 处理 .php 后缀变更为 .html 并跳转到新域名
+# ========================================
+# 具体页面重定向规则（老域名 → 新域名）
+# ========================================
+
+# 产品页面重定向 - Rolling Machine
+RewriteRule ^rolling-machine/product-four_roller_plate_rolling_machine\.php$ https://ruchengmachinery.com/product/rolling_machine/plate_rolling_machine.html [R=301,L]
+
+# 产品页面重定向 - Shearing Machine
+RewriteRule ^shearing-machine/product-swing_beam_shearing_machine\.php$ https://ruchengmachinery.com/product/shearing_machine/swing_beam_shearing_machine.html [R=301,L]
+
+# 产品页面重定向 - Laser Cutting Machine
+RewriteRule ^laser-cutting-machine/product-single_table_fiber_laser_cutting_machine\.php$ https://ruchengmachinery.com/product/laser_cutting_machine/single_table_fiber_laser_cutting_machine.html [R=301,L]
+RewriteRule ^laser-cutting-machine/product-tube_laser_cutting_machine\.php$ https://ruchengmachinery.com/product/laser_cutting_machine/tube_laser_cutting_machine.html [R=301,L]
+RewriteRule ^laser-cutting-machine/product-fully_enclosed_fiber_laser_cutting_machine\.php$ https://ruchengmachinery.com/product/laser_cutting_machine/fully_enclosed_fiber_laser_cutting_machine.html [R=301,L]
+
+# 产品页面重定向 - Mechanical Blade (现在是 blade)
+RewriteRule ^mechanical-blade/product-shearing_machine_blade\.php$ https://ruchengmachinery.com/product/blade/shearing_machine_blade.html [R=301,L]
+RewriteRule ^mechanical-blade/product-rolling_shear_blade\.php$ https://ruchengmachinery.com/product/blade/rolling_shear_slitting_blade.html [R=301,L]
+RewriteRule ^mechanical-blade/product-rolling_blade\.php$ https://ruchengmachinery.com/product/blade/rolling_shear_slitting_blade.html [R=301,L]
+RewriteRule ^mechanical-blade/product-slitting_circular_blade\.php$ https://ruchengmachinery.com/product/blade/rolling_shear_slitting_blade.html [R=301,L]
+RewriteRule ^mechanical-blade/product-slow_cursher_blade\.php$ https://ruchengmachinery.com/product/blade/crusher_blade.html [R=301,L]
+
+# 产品页面重定向 - Bending Machine Mold (现在是 press_brake_mold)
+# 注意：这些产品在新站点可能不存在，重定向到模具分类的主要页面
+RewriteRule ^bending-machine-mold/product-radius_die_of_press_brake\.php$ https://ruchengmachinery.com/product/press_brake_mold/cnc_bending_machine_mold.html [R=301,L]
+RewriteRule ^bending-machine-mold/product-upper_die_of_press_brake\.php$ https://ruchengmachinery.com/product/press_brake_mold/cnc_bending_machine_mold.html [R=301,L]
+RewriteRule ^bending-machine-mold/product-v_lower_die_of_press_brake\.php$ https://ruchengmachinery.com/product/press_brake_mold/cnc_bending_machine_mold.html [R=301,L]
+
+# 机械刀片产品 - 在新站点不存在的，重定向到相关产品
+RewriteRule ^mechanical-blade/product-corrugated_paper_cutting_blade\.php$ https://ruchengmachinery.com/product/blade/chipper_blades.html [R=301,L]
+RewriteRule ^mechanical-blade/product-doctor_blade\.php$ https://ruchengmachinery.com/product.html [R=301,L]
+
+# 博客文章重定向
+# 注意：需要根据实际文章内容确认映射关系
+RewriteRule ^blogs/article_about_us\.php$ https://ruchengmachinery.com/blogs/about-rucheng-technology.html [R=301,L]
+RewriteRule ^blogs/article_14344\.php$ https://ruchengmachinery.com/blogs/what-is-cnc-press-brake.html [R=301,L]
+RewriteRule ^blogs/article_14404\.php$ https://ruchengmachinery.com/blogs/press-brake-types-guide.html [R=301,L]
+RewriteRule ^blogs/article_15967\.php$ https://ruchengmachinery.com/blogs/how-bending-machine-works.html [R=301,L]
+
+# 基础页面重定向
+RewriteRule ^about\.php$ https://ruchengmachinery.com/about.html [R=301,L]
+RewriteRule ^terms\.php$ https://ruchengmachinery.com/contact.html [R=301,L]
+RewriteRule ^privacy\.php$ https://ruchengmachinery.com/contact.html [R=301,L]
+
+# ========================================
+# 通用重定向规则
+# ========================================
+
+# 1. 处理其他 .php 后缀变更为 .html 并跳转到新域名
 RewriteRule ^(.*)\.php$ https://ruchengmachinery.com/$1.html [R=301,L]
 
 # 2. 将所有其他请求从老域名跳转到新域名
