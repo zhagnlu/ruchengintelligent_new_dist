@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# 1. 处理 .php 后缀变更为 .html 并跳转到新域名
+RewriteRule ^(.*)\.php$ https://ruchengmachinery.com/$1.html [R=301,L]
+
+# 2. 将所有其他请求从老域名跳转到新域名
+RewriteCond %{HTTP_HOST} ^(www\.)?ruchengintelligent\.com [NC]
+RewriteRule ^(.*)$ https://ruchengmachinery.com/$1 [L,R=301]
